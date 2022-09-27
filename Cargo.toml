@@ -12,7 +12,7 @@ async-graphql = "4.0.14"
 async-graphql-axum = "4.0.14"
 tokio = { version = "1.21.1", features = ["macros", "rt-multi-thread"] }
 hyper = "0.14"
-axum = { version = "0.5.6", default-features = false, features = ["headers"] }
+axum = { version = "0.5.16", default-features = false, features = ["headers"] }
 tower-http = { version = "0.3.4", features = ["compression-br", "compression-gzip"] }
 async-trait = "0.1.57"
 
