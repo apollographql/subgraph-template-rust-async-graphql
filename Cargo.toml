@@ -9,7 +9,7 @@ publish = false
 
 [dependencies]
 async-graphql = "4.0.14"
-async-graphql-axum = "4.0.15"
+async-graphql-axum = "4.0.16"
 tokio = { version = "1.21.2", features = ["macros", "rt-multi-thread"] }
 hyper = "0.14"
 axum = { version = "0.5.16", default-features = false, features = ["headers"] }
