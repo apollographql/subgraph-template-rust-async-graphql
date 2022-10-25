@@ -4,5 +4,11 @@
         "config:base",
         ":semanticCommits",
         ":semanticCommitTypeAll(chore)"
+    ],
+    "packageRules": [
+        {
+          "matchPackagePatterns": ["async-graphql", "async-graphql-axum"],
+          "groupName": "async-graphql"
+        }
     ]
 }
