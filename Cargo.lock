@@ -749,6 +749,7 @@ dependencies = [
  "async-graphql-axum",
  "async-trait",
  "axum",
+ "http",
  "hyper",
  "serde_json",
  "tokio",
