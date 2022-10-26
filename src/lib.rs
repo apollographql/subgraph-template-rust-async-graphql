@@ -1,7 +1,9 @@
 use async_graphql::{EmptySubscription, Object, ID};
 use async_graphql_axum::{GraphQLRequest, GraphQLResponse};
 use axum::{extract::Extension, routing::post, Router};
+use http::{header::CONTENT_TYPE, HeaderValue, Method};
 use tower_http::compression::CompressionLayer;
+use tower_http::cors::CorsLayer;
 
 use crate::thing::{CreateThing, Thing};
 
@@ -62,8 +64,18 @@ pub fn app() -> Router {
         .limit_complexity(100)
         .finish();
 
+    let cors = CorsLayer::new()
+        .allow_methods([Method::POST])
+        .allow_headers([CONTENT_TYPE])
+        .allow_origin(
+            "https://studio.apollographql.com"
+                .parse::<HeaderValue>()
+                .expect("Can enable sandbox CORS"),
+        );
+
     Router::new()
         .route("/", post(graphql_handler))
         .layer(Extension(schema))
         .layer(CompressionLayer::new())
+        .layer(cors)
 }
