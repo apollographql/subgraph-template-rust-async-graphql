@@ -1,5 +1,7 @@
 # async-graphql Subgraph Template
 
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template/1KF0vV)
+
 This template can be used to quickly create an [Apollo Federation] subgraph with the [async-graphql] crate.
 
 ## What's Included
