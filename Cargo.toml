@@ -11,7 +11,7 @@ publish = false
 async-graphql = "5.0.0"
 async-graphql-axum = "5.0.0"
 async-trait = "0.1.58"
-axum = { version = "0.5.17", default-features = false, features = ["headers"] }
+axum = { version = "0.6.0", default-features = false, features = ["headers"] }
 http = "0.2.8"
 hyper = "0.14"
 tokio = { version = "1.22.0", features = ["macros", "rt-multi-thread"] }
