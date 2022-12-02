@@ -15,7 +15,7 @@ axum = { version = "0.6.1", default-features = false, features = ["headers"] }
 http = "0.2.8"
 hyper = "0.14"
 tokio = { version = "1.22.0", features = ["macros", "rt-multi-thread"] }
-tower-http = { version = "0.3.4", features = ["compression-br", "compression-gzip", "cors"] }
+tower-http = { version = "0.3.5", features = ["compression-br", "compression-gzip", "cors"] }
 
 [dev-dependencies]
 tower = { version = "0.4", features = ["util"] }
