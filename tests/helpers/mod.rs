@@ -1,5 +1,7 @@
-use axum::body::Body;
-use axum::http::{self, Request, StatusCode};
+use axum::{
+    body::Body,
+    http::{self, Request, StatusCode},
+};
 use serde_json::{json, Value};
 use tower::ServiceExt;
 

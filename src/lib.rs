@@ -2,10 +2,9 @@ use async_graphql::{EmptySubscription, Object, ID};
 use async_graphql_axum::{GraphQLRequest, GraphQLResponse};
 use axum::{extract::Extension, routing::post, Router};
 use http::{header::CONTENT_TYPE, HeaderValue, Method};
-use tower_http::compression::CompressionLayer;
-use tower_http::cors::CorsLayer;
+use tower_http::{compression::CompressionLayer, cors::CorsLayer};
 
-use crate::thing::{CreateThing, Thing};
+use crate::thing::{get_thing, CreateThing, Thing};
 
 mod thing;
 
@@ -16,27 +15,13 @@ impl Query {
     // TODO: Fill in query AND entity resolvers
     /// This will show up in the supergraph schema as part of Query.
     async fn thing(&self, id: ID) -> Option<Thing> {
-        if id == "1" {
-            Some(Thing {
-                id,
-                name: Some(String::from("Name")),
-            })
-        } else {
-            None
-        }
+        get_thing(id)
     }
 
     /// This will be available to other subgraphs as an entity.
     #[graphql(entity)]
     async fn thing_entity_by_id(&self, id: ID) -> Option<Thing> {
-        if id == "1" {
-            Some(Thing {
-                id,
-                name: Some(String::from("Name")),
-            })
-        } else {
-            None
-        }
+        get_thing(id)
     }
 }
 
