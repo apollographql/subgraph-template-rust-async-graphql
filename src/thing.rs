@@ -12,3 +12,14 @@ pub(crate) struct CreateThing {
     pub(crate) id: ID,
     pub(crate) name: Option<String>,
 }
+
+pub(crate) fn get_thing(id: ID) -> Option<Thing> {
+    if id == "1" {
+        Some(Thing {
+            id,
+            name: Some(String::from("Name")),
+        })
+    } else {
+        None
+    }
+}
