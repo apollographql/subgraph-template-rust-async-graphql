@@ -21,9 +21,10 @@ async fn main() {
         .unwrap_or_else(|_| "4001".to_string())
         .parse::<u16>()
         .unwrap();
+
     info!(
-        "Run `rover dev --url http://localhost:{port} --name {crate_name}`",
-        crate_name = env!("CARGO_PKG_NAME")
+        "Explore this graph at https://studio.apollographql.com/sandbox/explorer?endpoint={}",
+        urlencoding::encode(&format!("http://localhost:{port}"))
     );
 
     Server::bind(&(Ipv4Addr::new(0, 0, 0, 0), port).into())
