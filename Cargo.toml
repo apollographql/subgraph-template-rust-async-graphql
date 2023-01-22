@@ -10,7 +10,7 @@ publish = false
 [dependencies]
 async-graphql = { version = "5.0.5", features = ["tracing"] }
 async-graphql-axum = "5.0.5"
-async-trait = "0.1.60"
+async-trait = "0.1.63"
 axum = { version = "0.6.2", default-features = false, features = ["headers"] }
 http = "0.2.8"
 hyper = "0.14"
