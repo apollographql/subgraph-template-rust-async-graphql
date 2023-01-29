@@ -14,7 +14,7 @@ async-trait = "0.1.63"
 axum = { version = "0.6.4", default-features = false, features = ["headers"] }
 http = "0.2.8"
 hyper = "0.14"
-tokio = { version = "1.24.2", features = ["macros", "rt-multi-thread"] }
+tokio = { version = "1.25.0", features = ["macros", "rt-multi-thread"] }
 tower-http = { version = "0.3.5", features = ["compression-br", "compression-gzip", "cors"] }
 tracing = "0.1.37"
 tracing-subscriber = { version = "0.3.16", features = ["env-filter"] }
