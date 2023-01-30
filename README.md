@@ -6,7 +6,7 @@ This template can be used to quickly create an [Apollo Federation] subgraph with
 
 ## What's Included
 
-- A basic, [Apollo Federation] subgraph with simple examples for queries, entities, and mutations. You can run this subgraph with `cargo run`.
+- A basic, [Apollo Federation] subgraph with simple examples for queries, entities, and mutations. You can run this subgraph with `cargo run` or `cargo watch -x run` if using [cargo-watch] for auto-reloading.
 - Example tests in the `tests` directory. You can run these tests with `cargo test`.
 - GitHub Actions workflows which will:
   - Run `cargo test` on every push.
@@ -27,4 +27,5 @@ This template can be used to quickly create an [Apollo Federation] subgraph with
 
 [apollo federation]: https://www.apollographql.com/docs/federation/
 [async-graphql]: https://async-graphql.github.io/async-graphql/
+[cargo-watch]: https://crates.io/crates/cargo-watch
 [rover]: https://www.apollographql.com/docs/rover/
