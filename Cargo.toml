@@ -8,8 +8,8 @@ publish = false
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-async-graphql = { version = "5.0.6", features = ["tracing"] }
-async-graphql-axum = "5.0.6"
+async-graphql = { version = "5.0.6", default-features = false, features = ["tracing"] }
+async-graphql-axum = { version = "5.0.6", default-features = false }
 async-trait = "0.1.64"
 axum = { version = "0.6.7", default-features = false, features = ["headers"] }
 headers = "0.3.8"
