@@ -1,5 +1,7 @@
 name: Tests and Checks
-on: push
+on: 
+  push:
+  merge_group:
 
 jobs:
   prepare_schema:
