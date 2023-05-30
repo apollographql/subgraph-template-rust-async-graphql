@@ -5,6 +5,7 @@
         ":semanticCommits",
         ":semanticCommitTypeAll(chore)"
     ],
+    "platformAutomerge": true,
     "packageRules": [
         {
           "matchPackagePatterns": ["async-graphql", "async-graphql-axum"],
