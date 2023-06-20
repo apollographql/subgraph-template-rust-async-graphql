@@ -18,7 +18,7 @@ hyper = "0.14"
 lazy_static = "1.4.0"
 tokio = { version = "1.28.2", features = ["macros", "rt-multi-thread"] }
 tower = "0.4.13"
-tower-http = { version = "0.4.0", features = ["compression-br", "compression-gzip", "cors"] }
+tower-http = { version = "0.4.1", features = ["compression-br", "compression-gzip", "cors"] }
 tracing = "0.1.38"
 tracing-subscriber = { version = "0.3.17", features = ["env-filter"] }
 urlencoding = "2.1.2"
