@@ -1,11 +1,12 @@
-use async_graphql::{EmptySubscription, Object, ID};
+use async_graphql::{extensions::Tracing, EmptySubscription, Object, ID};
 use async_graphql_axum::{GraphQLRequest, GraphQLResponse};
-use axum::middleware::from_extractor;
-use axum::{extract::Extension, routing::post, Router};
+use axum::{extract::Extension, middleware::from_extractor, routing::post, Router};
 use http::{HeaderValue, Method};
 use tower::ServiceBuilder;
-use tower_http::cors::Any;
-use tower_http::{compression::CompressionLayer, cors::CorsLayer};
+use tower_http::{
+    compression::CompressionLayer,
+    cors::{Any, CorsLayer},
+};
 
 use crate::thing::{get_thing, CreateThing, Thing};
 
@@ -46,11 +47,11 @@ async fn graphql_handler(schema: Extension<Schema>, req: GraphQLRequest) -> Grap
     schema.execute(req.into_inner()).await.into()
 }
 
-#[must_use]
 pub fn app() -> Router {
     let schema: Schema = Schema::build(Query, Mutation, EmptySubscription)
         .enable_federation()
         .limit_complexity(100)
+        .extension(Tracing)
         .finish();
 
     let cors = CorsLayer::new()

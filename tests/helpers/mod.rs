@@ -2,10 +2,9 @@ use axum::{
     body::Body,
     http::{self, Request, StatusCode},
 };
+use my_subgraph::app;
 use serde_json::{json, Value};
 use tower::ServiceExt;
-
-use my_subgraph::app;
 
 pub(crate) async fn run_graphql_query(query: &str, operation: &str) -> Value {
     let app = app();

@@ -1,10 +1,9 @@
 use std::net::Ipv4Addr;
 
 use axum::Server;
+use my_subgraph::app;
 use tracing::info;
 use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt, EnvFilter, FmtSubscriber};
-
-use my_subgraph::app;
 
 #[tokio::main]
 async fn main() {
