@@ -15,7 +15,7 @@ axum = { version = "0.6.19", default-features = false, features = ["headers"] }
 headers = "0.3.8"
 http = "0.2.9"
 hyper = "0.14"
-tokio = { version = "1.29.1", features = ["macros", "rt-multi-thread"] }
+tokio = { version = "1.29.1", features = ["macros", "rt-multi-thread", "signal"] }
 tower = "0.4.13"
 tower-http = { version = "0.4.3", features = ["compression-br", "compression-gzip", "cors"] }
 tracing = "0.1.38"

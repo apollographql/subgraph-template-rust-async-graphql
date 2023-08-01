@@ -10,11 +10,13 @@ use tower_http::{
     cors::{Any, CorsLayer},
 };
 
+pub use crate::graceful_shutdown::graceful_shutdown;
 use crate::{
     router_auth::require_router_auth,
     thing::{get_thing, CreateThing, Thing},
 };
 
+mod graceful_shutdown;
 mod router_auth;
 mod thing;
 

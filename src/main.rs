@@ -1,7 +1,7 @@
 use std::net::Ipv4Addr;
 
 use axum::Server;
-use my_subgraph::app;
+use my_subgraph::{app, graceful_shutdown};
 use tracing::info;
 use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt, EnvFilter, FmtSubscriber};
 
@@ -28,6 +28,7 @@ async fn main() {
 
     Server::bind(&(Ipv4Addr::new(0, 0, 0, 0), port).into())
         .serve(app.into_make_service())
+        .with_graceful_shutdown(graceful_shutdown())
         .await
         .unwrap();
 }
