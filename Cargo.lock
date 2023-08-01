@@ -804,7 +804,6 @@ dependencies = [
  "headers",
  "http",
  "hyper",
- "lazy_static",
  "serde_json",
  "tokio",
  "tower",

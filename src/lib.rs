@@ -1,6 +1,8 @@
+use std::sync::Arc;
+
 use async_graphql::{extensions::Tracing, EmptySubscription, Object, ID};
 use async_graphql_axum::{GraphQLRequest, GraphQLResponse};
-use axum::{extract::Extension, middleware::from_extractor, routing::post, Router};
+use axum::{extract::Extension, middleware::from_fn_with_state, routing::post, Router};
 use http::{HeaderValue, Method};
 use tower::ServiceBuilder;
 use tower_http::{
@@ -8,7 +10,10 @@ use tower_http::{
     cors::{Any, CorsLayer},
 };
 
-use crate::thing::{get_thing, CreateThing, Thing};
+use crate::{
+    router_auth::require_router_auth,
+    thing::{get_thing, CreateThing, Thing},
+};
 
 mod router_auth;
 mod thing;
@@ -63,11 +68,13 @@ pub fn app() -> Router {
                 .expect("Can enable sandbox CORS"),
         );
 
+    let router_secret = std::env::var("ROUTER_SECRET").ok().map(Arc::from);
+
     Router::new().route("/", post(graphql_handler)).layer(
         ServiceBuilder::new()
             .layer(Extension(schema))
             .layer(CompressionLayer::new())
             .layer(cors)
-            .layer(from_extractor::<router_auth::RequireRouterAuth>()),
+            .layer(from_fn_with_state(router_secret, require_router_auth)),
     )
 }

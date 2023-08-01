@@ -2,7 +2,7 @@
 name = "my-subgraph"  # TODO: Rename This
 version = "0.1.0"
 edition = "2021"
-rust-version = "1.63.0"
+rust-version = "1.70.0"
 publish = false
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
@@ -15,7 +15,6 @@ axum = { version = "0.6.19", default-features = false, features = ["headers"] }
 headers = "0.3.8"
 http = "0.2.9"
 hyper = "0.14"
-lazy_static = "1.4.0"
 tokio = { version = "1.29.1", features = ["macros", "rt-multi-thread"] }
 tower = "0.4.13"
 tower-http = { version = "0.4.3", features = ["compression-br", "compression-gzip", "cors"] }

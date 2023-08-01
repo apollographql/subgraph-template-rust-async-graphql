@@ -1,42 +1,27 @@
-use async_trait::async_trait;
-use axum::{
-    extract::FromRequestParts,
-    http::{request::Parts, StatusCode},
-};
-use lazy_static::lazy_static;
+use std::sync::Arc;
 
-/// A middleware that requires a `Router-Authorization` header to be present and match the value of
-/// the `ROUTER_SECRET` environment variable (if set). If the environment variable is not set, this
-/// does nothing.
-#[derive(Clone, Copy, Debug)]
-pub(crate) struct RequireRouterAuth;
+use axum::{body::boxed, extract::State, http::StatusCode, middleware::Next, response::Response};
+use http::Request;
 
-lazy_static! {
-    static ref ROUTER_TOKEN: Option<String> = std::env::var("ROUTER_SECRET").ok();
-}
-
-#[async_trait]
-impl<S> FromRequestParts<S> for RequireRouterAuth
-where
-    S: Send + Sync,
-{
-    type Rejection = StatusCode;
-
-    async fn from_request_parts(parts: &mut Parts, _state: &S) -> Result<Self, Self::Rejection> {
-        if let Some(token) = ROUTER_TOKEN.as_ref() {
-            let auth = parts
-                .headers
-                .get("Router-Authorization")
-                .ok_or(StatusCode::UNAUTHORIZED)?
-                .to_str()
-                .map_err(|_| StatusCode::UNAUTHORIZED)?;
-            if auth == token {
-                Ok(Self)
-            } else {
-                Err(StatusCode::UNAUTHORIZED)
+pub(crate) async fn require_router_auth<B>(
+    State(secret): State<Option<Arc<str>>>,
+    request: Request<B>,
+    next: Next<B>,
+) -> Response {
+    if let Some(token) = secret.as_deref() {
+        let auth = request
+            .headers()
+            .get("Router-Authorization")
+            .map(|header_value| header_value.to_str().unwrap_or_default());
+        match auth {
+            Some(header) if header == token => (),
+            _ => {
+                return Response::builder()
+                    .status(StatusCode::UNAUTHORIZED)
+                    .body(boxed(String::new()))
+                    .unwrap()
             }
-        } else {
-            Ok(Self)
         }
     }
+    next.run(request).await
 }
