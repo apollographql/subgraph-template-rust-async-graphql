@@ -6,15 +6,11 @@
         ":semanticCommitTypeAll(chore)"
     ],
     "platformAutomerge": true,
+    "automerge": true,
     "packageRules": [
         {
           "matchPackagePatterns": ["async-graphql", "async-graphql-axum"],
           "groupName": "async-graphql"
-        },
-        {
-          "matchUpdateTypes": ["minor", "patch"],
-          "matchCurrentVersion": "!/^0/",
-          "automerge": true
         }
     ]
 }
