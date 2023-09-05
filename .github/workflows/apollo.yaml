@@ -23,7 +23,7 @@ jobs:
       schema: ${{ env.SCHEMA_FILE }}
       schema_artifact: ${{ env.SCHEMA_ARTIFACT }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Install Rover
         run: |
           curl -sSL https://rover.apollo.dev/nix/latest | sh
@@ -46,7 +46,7 @@ jobs:
     name: Introspect Cargo.toml to get subgraph name
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: Swatinem/rust-cache@v2
       - name: Install cargo-get
         run: cargo install cargo-get
