@@ -7,6 +7,7 @@
     ],
     "platformAutomerge": true,
     "automerge": true,
+    "automergeStrategy": "squash",
     "lockFileMaintenance": {
         "enabled": true,
         "automerge": true
