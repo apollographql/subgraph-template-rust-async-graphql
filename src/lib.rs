@@ -57,7 +57,7 @@ async fn graphql_handler(schema: Extension<Schema>, req: GraphQLRequest) -> Grap
 pub fn app() -> Router {
     let schema: Schema = Schema::build(Query, Mutation, EmptySubscription)
         .enable_federation()
-        .limit_complexity(100)
+        .limit_complexity(250)
         .extension(Tracing)
         .finish();
 
