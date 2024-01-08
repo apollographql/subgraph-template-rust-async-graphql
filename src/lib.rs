@@ -54,7 +54,7 @@ async fn graphql_handler(schema: Extension<Schema>, req: GraphQLRequest) -> Grap
     schema.execute(req.into_inner()).await.into()
 }
 
-pub fn app() -> Router {
+pub fn app(router_secret: Option<String>) -> Router {
     let schema: Schema = Schema::build(Query, Mutation, EmptySubscription)
         .enable_federation()
         .limit_complexity(250)
@@ -70,7 +70,7 @@ pub fn app() -> Router {
                 .expect("Can enable sandbox CORS"),
         );
 
-    let router_secret = std::env::var("ROUTER_SECRET").ok().map(Arc::from);
+    let router_secret = router_secret.map(Arc::from);
 
     Router::new().route("/", post(graphql_handler)).layer(
         ServiceBuilder::new()

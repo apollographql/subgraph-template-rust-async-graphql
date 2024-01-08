@@ -1,12 +1,12 @@
 use std::sync::Arc;
 
-use axum::{body::boxed, extract::State, http::StatusCode, middleware::Next, response::Response};
+use axum::{body::Body, extract::State, http::StatusCode, middleware::Next, response::Response};
 use http::Request;
 
-pub(crate) async fn require_router_auth<B>(
+pub(crate) async fn require_router_auth(
     State(secret): State<Option<Arc<str>>>,
-    request: Request<B>,
-    next: Next<B>,
+    request: Request<Body>,
+    next: Next,
 ) -> Response {
     if let Some(token) = secret.as_deref() {
         let auth = request
@@ -18,7 +18,7 @@ pub(crate) async fn require_router_auth<B>(
             _ => {
                 return Response::builder()
                     .status(StatusCode::UNAUTHORIZED)
-                    .body(boxed(String::new()))
+                    .body(Body::empty())
                     .unwrap()
             }
         }
