@@ -2,12 +2,13 @@ use axum::{
     body::Body,
     http::{self, Request, StatusCode},
 };
+use axum::body::to_bytes;
 use my_subgraph::app;
 use serde_json::{json, Value};
 use tower::ServiceExt;
 
 pub(crate) async fn run_graphql_query(query: &str, operation: &str) -> Value {
-    let app = app();
+    let app = app(None);
     let response = app
         .oneshot(
             Request::builder()
@@ -22,7 +23,7 @@ pub(crate) async fn run_graphql_query(query: &str, operation: &str) -> Value {
         .await
         .unwrap();
     let status = response.status();
-    let body = hyper::body::to_bytes(response.into_body()).await.unwrap();
+    let body = to_bytes(response.into_body(), usize::MAX).await.unwrap();
     assert_eq!(status, StatusCode::OK, "{:#?}", body);
 
     serde_json::from_slice(&body).unwrap()

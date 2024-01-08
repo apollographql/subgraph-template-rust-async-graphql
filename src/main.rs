@@ -1,9 +1,8 @@
-use std::net::Ipv4Addr;
-
-use axum::Server;
-use my_subgraph::{app, graceful_shutdown};
+use tokio::net::TcpListener;
 use tracing::info;
-use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt, EnvFilter, FmtSubscriber};
+use tracing_subscriber::{EnvFilter, FmtSubscriber, layer::SubscriberExt, util::SubscriberInitExt};
+
+use my_subgraph::{app, graceful_shutdown};
 
 #[tokio::main]
 async fn main() {
@@ -15,7 +14,7 @@ async fn main() {
                 .expect("Could not set up tracing subscriber"),
         )
         .init();
-    let app = app();
+    let app = app(std::env::var("ROUTER_SECRET").ok());
     let port = std::env::var("PORT")
         .unwrap_or_else(|_| "4001".to_string())
         .parse::<u16>()
@@ -26,8 +25,10 @@ async fn main() {
         urlencoding::encode(&format!("http://localhost:{port}"))
     );
 
-    Server::bind(&(Ipv4Addr::new(0, 0, 0, 0), port).into())
-        .serve(app.into_make_service())
+    let listener = TcpListener::bind(("0.0.0.0", port))
+        .await
+        .expect("Could not bind to port");
+    axum::serve(listener, app)
         .with_graceful_shutdown(graceful_shutdown())
         .await
         .unwrap();
