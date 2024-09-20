@@ -198,9 +198,9 @@ checksum = "0c4b4d0bd25bd0b74681c0ad21497610ce1b7c91b1022cd21c80c6fbdd9476b0"
 
 [[package]]
 name = "axum"
-version = "0.7.5"
+version = "0.7.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3a6c9af12842a67734c9a2e355436e5d03b22383ed60cf13cd0c18fbfe3dcbcf"
+checksum = "8f43644eed690f5374f1af436ecd6aea01cd201f6fbdf0178adaf6907afb2cec"
 dependencies = [
  "async-trait",
  "axum-core",
@@ -227,7 +227,7 @@ dependencies = [
  "sync_wrapper 1.0.1",
  "tokio",
  "tokio-tungstenite",
- "tower 0.4.13",
+ "tower 0.5.1",
  "tower-layer",
  "tower-service",
  "tracing",
@@ -235,9 +235,9 @@ dependencies = [
 
 [[package]]
 name = "axum-core"
-version = "0.4.3"
+version = "0.4.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a15c63fd72d41492dc4f497196f5da1fb04fb7529e631d73630d1b491e47a2e3"
+checksum = "5e6b8ba012a258d63c9adfa28b9ddcf66149da6f986c5b5452e629d5ee64bf00"
 dependencies = [
  "async-trait",
  "bytes",
@@ -248,7 +248,7 @@ dependencies = [
  "mime",
  "pin-project-lite",
  "rustversion",
- "sync_wrapper 0.1.2",
+ "sync_wrapper 1.0.1",
  "tower-layer",
  "tower-service",
  "tracing",
@@ -699,6 +699,8 @@ dependencies = [
  "hyper",
  "pin-project-lite",
  "tokio",
+ "tower 0.4.13",
+ "tower-service",
 ]
 
 [[package]]
@@ -706,16 +708,6 @@ name = "ident_case"
 version = "1.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b9e0384b61958566e926dc50660321d12159025e767c18e043daf26b70104c39"
-
-[[package]]
-name = "idna"
-version = "0.5.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "634d9b1461af396cad843f47fdba5597a4f9e6ddd4bfb6ff5d85028c25cb12f6"
-dependencies = [
- "unicode-bidi",
- "unicode-normalization",
-]
 
 [[package]]
 name = "indexmap"
@@ -1256,21 +1248,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "tinyvec"
-version = "1.8.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "445e881f4f6d382d5f27c034e25eb92edd7c784ceab92a0937db7f2e9471b938"
-dependencies = [
- "tinyvec_macros",
-]
-
-[[package]]
-name = "tinyvec_macros"
-version = "0.1.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1f3ccbac311fea05f86f61904b462b55fb3df8837a366dfc601a0161d0532f20"
-
-[[package]]
 name = "tokio"
 version = "1.40.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1311,9 +1288,9 @@ dependencies = [
 
 [[package]]
 name = "tokio-tungstenite"
-version = "0.21.0"
+version = "0.23.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c83b561d025642014097b66e6c1bb422783339e0909e4429cde4749d1990bc38"
+checksum = "c6989540ced10490aaf14e6bad2e3d33728a2813310a0c71d1574304c49631cd"
 dependencies = [
  "futures-util",
  "log",
@@ -1365,7 +1342,6 @@ dependencies = [
  "tokio",
  "tower-layer",
  "tower-service",
- "tracing",
 ]
 
 [[package]]
@@ -1378,8 +1354,10 @@ dependencies = [
  "futures-util",
  "pin-project-lite",
  "sync_wrapper 0.1.2",
+ "tokio",
  "tower-layer",
  "tower-service",
+ "tracing",
 ]
 
 [[package]]
@@ -1489,9 +1467,9 @@ dependencies = [
 
 [[package]]
 name = "tungstenite"
-version = "0.21.0"
+version = "0.23.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9ef1a641ea34f399a848dea702823bbecfb4c486f911735368f1f137cb8257e1"
+checksum = "6e2e2ce1e47ed2994fd43b04c8f618008d4cabdd5ee34027cf14f9d918edd9c8"
 dependencies = [
  "byteorder",
  "bytes",
@@ -1502,7 +1480,6 @@ dependencies = [
  "rand",
  "sha1",
  "thiserror",
- "url",
  "utf-8",
 ]
 
@@ -1519,36 +1496,10 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ed646292ffc8188ef8ea4d1e0e0150fb15a5c2e12ad9b8fc191ae7a8a7f3c4b9"
 
 [[package]]
-name = "unicode-bidi"
-version = "0.3.15"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "08f95100a766bf4f8f28f90d77e0a5461bbdb219042e7679bebe79004fed8d75"
-
-[[package]]
 name = "unicode-ident"
 version = "1.0.13"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e91b56cd4cadaeb79bbf1a5645f6b4f8dc5bde8834ad5894a8db35fda9efa1fe"
-
-[[package]]
-name = "unicode-normalization"
-version = "0.1.23"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a56d1686db2308d901306f92a263857ef59ea39678a5458e7cb17f01415101f5"
-dependencies = [
- "tinyvec",
-]
-
-[[package]]
-name = "url"
-version = "2.5.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "22784dbdf76fdde8af1aeda5622b546b422b6fc585325248a2bf9f5e41e94d6c"
-dependencies = [
- "form_urlencoded",
- "idna",
- "percent-encoding",
-]
 
 [[package]]
 name = "urlencoding"
