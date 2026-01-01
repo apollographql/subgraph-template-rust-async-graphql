@@ -7,10 +7,6 @@ name = "Inflector"
 version = "0.11.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "fe438c63458706e03479442743baae6c88256498e6431708f6dfc520a26515d3"
-dependencies = [
- "lazy_static",
- "regex",
-]
 
 [[package]]
 name = "adler2"
@@ -57,9 +53,9 @@ dependencies = [
 
 [[package]]
 name = "async-graphql"
-version = "7.0.17"
+version = "7.0.18"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "036618f842229ba0b89652ffe425f96c7c16a49f7e3cb23b56fca7f61fd74980"
+checksum = "60b3245599be25293e4147b775026a36335c0a827a18c83a79419fc50df1d734"
 dependencies = [
  "async-graphql-derive",
  "async-graphql-parser",
@@ -82,16 +78,16 @@ dependencies = [
  "serde_json",
  "serde_urlencoded",
  "static_assertions_next",
- "thiserror 1.0.69",
+ "thiserror",
  "tracing",
  "tracing-futures",
 ]
 
 [[package]]
 name = "async-graphql-axum"
-version = "7.0.17"
+version = "7.0.18"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8725874ecfbf399e071150b8619c4071d7b2b7a2f117e173dddef53c6bdb6bb1"
+checksum = "f87feab5d099c1e18f63186043d181ef5b05d2ea1bfa6828cc3d5539fda6f39a"
 dependencies = [
  "async-graphql",
  "axum",
@@ -106,9 +102,9 @@ dependencies = [
 
 [[package]]
 name = "async-graphql-derive"
-version = "7.0.17"
+version = "7.0.19"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fd45deb3dbe5da5cdb8d6a670a7736d735ba65b455328440f236dfb113727a3d"
+checksum = "e8cbbf64ecbc72994660670bb219be4deba4a8837663d71f66abc5185c16e8e1"
 dependencies = [
  "Inflector",
  "async-graphql-parser",
@@ -118,14 +114,14 @@ dependencies = [
  "quote",
  "strum",
  "syn",
- "thiserror 1.0.69",
+ "thiserror",
 ]
 
 [[package]]
 name = "async-graphql-parser"
-version = "7.0.17"
+version = "7.0.19"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "60b7607e59424a35dadbc085b0d513aa54ec28160ee640cf79ec3b634eba66d3"
+checksum = "b07d48edec11aa7c3363b15dca3836ba536a142f102a70f4d916ac5c3fcf0463"
 dependencies = [
  "async-graphql-value",
  "pest",
@@ -135,9 +131,9 @@ dependencies = [
 
 [[package]]
 name = "async-graphql-value"
-version = "7.0.17"
+version = "7.0.19"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "34ecdaff7c9cffa3614a9f9999bf9ee4c3078fe3ce4d6a6e161736b56febf2de"
+checksum = "ec4955873e99cfa472ce0f9425f43b5541dc71bc7fbec82e7413ea78e2675ccc"
 dependencies = [
  "bytes",
  "indexmap",
@@ -350,9 +346,9 @@ dependencies = [
 
 [[package]]
 name = "darling"
-version = "0.20.11"
+version = "0.23.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fc7f46116c46ff9ab3eb1597a45688b6715c6e628b5c133e288e709a29bcb4ee"
+checksum = "25ae13da2f202d56bd7f91c25fba009e7717a1e4a1cc98a76d844b65ae912e9d"
 dependencies = [
  "darling_core",
  "darling_macro",
@@ -360,11 +356,10 @@ dependencies = [
 
 [[package]]
 name = "darling_core"
-version = "0.20.11"
+version = "0.23.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0d00b9596d185e565c2207a0b01f8bd1a135483d02d9b7b0a54b11da8d53412e"
+checksum = "9865a50f7c335f53564bb694ef660825eb8610e0a53d3e11bf1b0d3df31e03b0"
 dependencies = [
- "fnv",
  "ident_case",
  "proc-macro2",
  "quote",
@@ -374,9 +369,9 @@ dependencies = [
 
 [[package]]
 name = "darling_macro"
-version = "0.20.11"
+version = "0.23.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fc34b93ccb385b40dc71c6fceac4b2ad23662c7eeb248cf10d529b7e055b6ead"
+checksum = "ac3984ec7bd6cfa798e62b4a642426a5be0e68f9401cfc2a01e3fa9ea2fcdb8d"
 dependencies = [
  "darling_core",
  "quote",
@@ -984,12 +979,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7a2d987857b319362043e95f5353c0535c1f58eec5336fdfcf626430af7def58"
 
 [[package]]
-name = "rustversion"
-version = "1.0.22"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b39cdef0fa800fc44525c84ccb54a029961a8215f9619753635a9c0d2538d46d"
-
-[[package]]
 name = "ryu"
 version = "1.0.22"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1139,23 +1128,22 @@ checksum = "7da8b5736845d9f2fcb837ea5d9e2628564b3b043a70948a3f0b778838c5fb4f"
 
 [[package]]
 name = "strum"
-version = "0.26.3"
+version = "0.27.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8fec0f0aef304996cf250b31b5a10dee7980c85da9d759361292b8bca5a18f06"
+checksum = "af23d6f6c1a224baef9d3f61e287d2761385a5b88fdab4eb4c6f11aeb54c4bcf"
 dependencies = [
  "strum_macros",
 ]
 
 [[package]]
 name = "strum_macros"
-version = "0.26.4"
+version = "0.27.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4c6bee85a5a24955dc440386795aa378cd9cf82acd5f764469152d2270e581be"
+checksum = "7695ce3845ea4b33927c055a39dc438a45b059f7c1b3d91d38d10355fb8cbca7"
 dependencies = [
  "heck",
  "proc-macro2",
  "quote",
- "rustversion",
  "syn",
 ]
 
@@ -1178,31 +1166,11 @@ checksum = "0bf256ce5efdfa370213c1dabab5935a12e49f2c58d15e9eac2870d3b4f27263"
 
 [[package]]
 name = "thiserror"
-version = "1.0.69"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b6aaf5339b578ea85b50e080feb250a3e8ae8cfcdff9a461c9ec2904bc923f52"
-dependencies = [
- "thiserror-impl 1.0.69",
-]
-
-[[package]]
-name = "thiserror"
 version = "2.0.17"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f63587ca0f12b72a0600bcba1d40081f830876000bb46dd2337a3051618f4fc8"
 dependencies = [
- "thiserror-impl 2.0.17",
-]
-
-[[package]]
-name = "thiserror-impl"
-version = "1.0.69"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4fee6c4efc90059e10f81e6d42c60a18f76588c3d74cb83a0b242a2b6c7504c1"
-dependencies = [
- "proc-macro2",
- "quote",
- "syn",
+ "thiserror-impl",
 ]
 
 [[package]]
@@ -1453,7 +1421,7 @@ dependencies = [
  "log",
  "rand",
  "sha1",
- "thiserror 2.0.17",
+ "thiserror",
  "utf-8",
 ]
 
