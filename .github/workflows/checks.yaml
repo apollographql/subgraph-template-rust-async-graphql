@@ -8,8 +8,30 @@ on:
 
 jobs:
   prepare_schema:
-    if: false
     uses: ./.github/workflows/apollo.yaml
+
+  compose:
+    name: Composition Check
+    needs: [prepare_schema]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download schema artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: ${{ needs.prepare_schema.outputs.schema_artifact }}
+      - name: Install Rover
+        run: |
+          curl -sSL https://rover.apollo.dev/nix/latest | sh
+          echo "$HOME/.rover/bin" >> $GITHUB_PATH
+      - name: Compose
+        run: |
+          echo "federation_version: =2.10.0" > /tmp/supergraph.yaml
+          echo "subgraphs:" >> /tmp/supergraph.yaml
+          echo "  template:" >> /tmp/supergraph.yaml
+          echo "    routing_url: http://localhost:4001" >> /tmp/supergraph.yaml
+          echo "    schema:" >> /tmp/supergraph.yaml
+          echo "      file: ./${{ needs.prepare_schema.outputs.schema }}" >> /tmp/supergraph.yaml
+          rover supergraph compose --config /tmp/supergraph.yaml
 
   check_schema:
     name: Check Schema with Apollo Studio
